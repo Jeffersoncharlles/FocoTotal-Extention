@@ -69,16 +69,25 @@ export const ModalVideo: FC<ModalVideoProps> = ({
       if (modalContent) {
         modalContent.appendChild(videoContainer);
 
-        // ======================= AJUSTE DE ESTILO ADICIONADO AQUI =======================
-        // Força o container e o iframe a preencherem o espaço do modal
+        // 1. Resetar o container do vídeo (Remover proporções travadas)
         videoContainer.style.setProperty("width", "100%", "important");
         videoContainer.style.setProperty("height", "100%", "important");
         videoContainer.style.setProperty("max-width", "none", "important");
         videoContainer.style.setProperty("max-height", "none", "important");
+        videoContainer.style.setProperty("min-height", "100%", "important");
+        videoContainer.style.setProperty("padding", "0", "important"); // MUITO IMPORTANTE
+        videoContainer.style.setProperty("margin", "0", "important");
+        videoContainer.style.setProperty("aspect-ratio", "auto", "important"); // Quebra o 16:9 fixo
+
+        // 2. Forçar o iframe a ser absoluto para ignorar paddings do pai
         const iframe = videoContainer.querySelector("iframe");
         if (iframe) {
-          iframe.style.width = "100%";
-          iframe.style.height = "100%";
+          iframe.style.setProperty("position", "absolute", "important");
+          iframe.style.setProperty("top", "0", "important");
+          iframe.style.setProperty("left", "0", "important");
+          iframe.style.setProperty("width", "100%", "important");
+          iframe.style.setProperty("height", "100%", "important");
+          iframe.style.setProperty("max-height", "none", "important");
         }
         // ==============================================================================
       }
@@ -112,7 +121,7 @@ export const ModalVideo: FC<ModalVideoProps> = ({
       {isModalOpen &&
         createPortal(
           <div className="fixed inset-0 bg-black/90 flex flex-col items-center justify-center z-[2147483640] p-4">
-            <div className="w-full h-full max-w-[1600px] flex flex-col">
+            <div className="w-full h-full flex flex-col">
               <div className="w-full flex-shrink-0 flex justify-end items-center py-2">
                 {/* ---- APLICAÇÃO DOS ESTILOS INLINE ---- */}
                 <button
@@ -127,7 +136,10 @@ export const ModalVideo: FC<ModalVideoProps> = ({
                 </button>
               </div>
 
-              <div ref={modalContentRef} className="w-full flex-grow min-h-0">
+              <div
+                ref={modalContentRef}
+                className="w-full h-full relative overflow-hidden"
+              >
                 {/* O videoContainer será movido para cá */}
               </div>
             </div>

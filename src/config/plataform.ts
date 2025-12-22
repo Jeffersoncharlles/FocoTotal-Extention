@@ -10,4 +10,5 @@ export const platforms = [
   { selectorApp: ".page__media" },
   { selectorB7WebOld: ".plyr__video-wrapper" },
   { selectorCosmos: '[data-testid="embed-container"]' },
+  { selectorCosmos: "#lightningPlayerContainer" },
 ];
