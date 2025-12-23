@@ -53,10 +53,9 @@ function handleStateCheck() {
 }
 
 // Nosso observador que monitora a página inteira
+let debounceTimer: ReturnType<typeof setTimeout> | undefined;
 const observer = new MutationObserver(() => {
   // Usamos um debounce para não rodar a verificação excessivamente
-
-  let debounceTimer;
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(handleStateCheck, 250);
 });
