@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, type FC } from "react";
 import { createPortal } from "react-dom";
 import { useVideoModalManager } from "../hooks/useVideoModalManager";
-import { modalLogger } from "../config/logger";
+import { Button } from "./ui/button";
+import { Maximize2, X } from "lucide-react";
 
 interface ModalVideoProps {
   videoContainer: HTMLElement;
@@ -13,6 +14,9 @@ export const ModalVideo: FC<ModalVideoProps> = ({
   videoSrc,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [buttonContainer, setButtonContainer] = useState<HTMLDivElement | null>(
+    null,
+  );
   const modalContentRef = useRef<HTMLDivElement>(null);
   const originalParentRef = useRef<HTMLElement | null>(null);
 
@@ -22,35 +26,25 @@ export const ModalVideo: FC<ModalVideoProps> = ({
     setIsModalOpen(false);
     originalParentRef.current = videoContainer.parentElement;
 
-    const openButton = document.createElement("button");
-    openButton.innerText = "Tela Cheia";
-    openButton.id = "focototal-open-button";
-    // Tailwind classes para visual + inline para posicionamento
-    openButton.className =
-      "px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold border-0 rounded-lg cursor-pointer hover:from-blue-700 hover:to-blue-800 transition-all active:scale-95 shadow-lg hover:shadow-xl";
-    openButton.style.position = "absolute";
-    openButton.style.top = "15px";
-    openButton.style.right = "15px";
-    openButton.style.zIndex = "2147483640";
-    openButton.onclick = () => setIsModalOpen(true);
+    // Criar container para o botão de abrir
+    const container = document.createElement("div");
+    container.id = "focototal-open-button-container";
+    container.style.position = "absolute";
+    container.style.top = "15px";
+    container.style.right = "15px";
+    container.style.zIndex = "2147483640";
 
+    // Garantir que o videoContainer tenha position: relative
     if (getComputedStyle(videoContainer).position === "static") {
       videoContainer.style.position = "relative";
     }
 
-    // Apenas adiciona o botão se ele não existir
-    if (!videoContainer.querySelector("#focototal-open-button")) {
-      modalLogger.log("Botão 'Tela Cheia' adicionado ao container");
-      videoContainer.appendChild(openButton);
-    } else {
-      modalLogger.log("Botão 'Tela Cheia' já existe no container");
-    }
+    videoContainer.appendChild(container);
+    setButtonContainer(container);
 
     return () => {
-      if (openButton && openButton.parentElement) {
-        modalLogger.log("Removendo botão 'Tela Cheia'");
-        openButton.remove();
-      }
+      container.remove();
+      setButtonContainer(null);
     };
   }, [videoSrc, videoContainer]);
 
@@ -76,41 +70,34 @@ export const ModalVideo: FC<ModalVideoProps> = ({
     return () => document.removeEventListener("keydown", handleEsc);
   }, [isModalOpen]);
 
-  // EFEITO 4: Criar botão X como elemento DOM quando modal abre
-  useEffect(() => {
-    if (!isModalOpen) return;
-
-    const closeButton = document.createElement("button");
-    closeButton.id = "focototal-close-button";
-    closeButton.innerHTML = "✕";
-    // Tailwind classes para o visual
-    closeButton.className =
-      "w-12 h-12 bg-red-600 text-white font-bold rounded-full cursor-pointer hover:bg-red-700 transition-all active:scale-90 shadow-lg hover:shadow-xl flex items-center justify-center text-2xl border-2 border-white";
-    // Apenas posicionamento em inline
-    closeButton.style.position = "fixed";
-    closeButton.style.top = "15px";
-    closeButton.style.right = "15px";
-    closeButton.style.zIndex = "2147483647";
-    closeButton.onclick = () => setIsModalOpen(false);
-
-    document.body.appendChild(closeButton);
-    modalLogger.log("Botão fechar adicionado ao DOM");
-
-    return () => {
-      const btn = document.getElementById("focototal-close-button");
-      if (btn) {
-        btn.remove();
-        modalLogger.log("Botão fechar removido do DOM");
-      }
-    };
-  }, [isModalOpen]);
-
-  // O JSX do modal, agora com centralização via flexbox
   return (
     <>
+      {buttonContainer &&
+        !isModalOpen &&
+        createPortal(
+          <Button
+            onClick={() => setIsModalOpen(true)}
+            className="bg-black  hover:bg-black/90 shadow-lg hover:shadow-xl active:scale-95"
+            size="default"
+          >
+            <Maximize2 className="mr-2 h-4 w-4 text-muted" />
+            <p className="text-muted">Tela Cheia</p>
+          </Button>,
+          buttonContainer,
+        )}
+
       {isModalOpen &&
         createPortal(
-          <div className="fixed inset-0 bg-black/90 flex flex-col items-center justify-center z-[2147483640] p-4">
+          <div className="fixed inset-0 bg-black/90 flex flex-col items-center justify-center z-2147483640 p-4">
+            <Button
+              onClick={() => setIsModalOpen(false)}
+              className="fixed top-4 right-4 z-2147483647 w-12 h-12 rounded-full bg-red-600 text-white hover:bg-red-700 border-2 border-white shadow-lg"
+              size="icon"
+              aria-label="Fechar modal de vídeo"
+            >
+              <X className="h-6 w-6 text-muted" />
+            </Button>
+
             {/* Container do vídeo */}
             <div className="w-full h-full flex flex-col relative">
               <div

@@ -2,7 +2,7 @@
  * CSS compilado do Tailwind para injeção dinâmica no content script
  * Este arquivo é gerado automaticamente. NÃO edite manualmente.
  * Para regenerar, execute: npm run generate:tailwind-css
- * Gerado em: 2026-02-10T18:43:40.645Z
+ * Gerado em: 2026-02-10T23:21:57.245Z
  */
 
 export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tailwindcss.com */
@@ -16,6 +16,7 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
       "Courier New", monospace;
     --color-red-600: oklch(57.7% 0.245 27.325);
     --color-red-700: oklch(50.5% 0.213 27.518);
+    --color-amber-300: oklch(87.9% 0.169 91.605);
     --color-blue-600: oklch(54.6% 0.245 262.881);
     --color-blue-700: oklch(48.8% 0.243 264.376);
     --color-blue-800: oklch(42.4% 0.199 265.638);
@@ -27,6 +28,8 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
     --color-white: #fff;
     --spacing: 0.25rem;
     --container-lg: 32rem;
+    --text-xs: 0.75rem;
+    --text-xs--line-height: calc(1 / 0.75);
     --text-sm: 0.875rem;
     --text-sm--line-height: calc(1.25 / 0.875);
     --text-lg: 1.125rem;
@@ -243,8 +246,11 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
   .z-50 {
     z-index: 50;
   }
-  .z-\[2147483640\] {
+  .z-2147483640 {
     z-index: 2147483640;
+  }
+  .z-2147483647 {
+    z-index: 2147483647;
   }
   .z-\[2147483647\] {
     z-index: 2147483647;
@@ -266,6 +272,9 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
     @media (width >= 96rem) {
       max-width: 96rem;
     }
+  }
+  .mr-2 {
+    margin-right: calc(var(--spacing) * 2);
   }
   .block {
     display: block;
@@ -297,6 +306,15 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
   .h-6 {
     height: calc(var(--spacing) * 6);
   }
+  .h-8 {
+    height: calc(var(--spacing) * 8);
+  }
+  .h-9 {
+    height: calc(var(--spacing) * 9);
+  }
+  .h-10 {
+    height: calc(var(--spacing) * 10);
+  }
   .h-12 {
     height: calc(var(--spacing) * 12);
   }
@@ -308,6 +326,12 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
   }
   .w-4 {
     width: calc(var(--spacing) * 4);
+  }
+  .w-6 {
+    width: calc(var(--spacing) * 6);
+  }
+  .w-9 {
+    width: calc(var(--spacing) * 9);
   }
   .w-11 {
     width: calc(var(--spacing) * 11);
@@ -408,6 +432,9 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
   .rounded-lg {
     border-radius: var(--radius);
   }
+  .rounded-md {
+    border-radius: calc(var(--radius) - 2px);
+  }
   .rounded-xs {
     border-radius: var(--radius-xs);
   }
@@ -426,6 +453,9 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
   .border-none {
     --tw-border-style: none;
     border-style: none;
+  }
+  .border-input {
+    border-color: var(--input);
   }
   .border-white {
     border-color: var(--color-white);
@@ -451,6 +481,9 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
       background-color: color-mix(in oklab, var(--color-black) 90%, transparent);
     }
   }
+  .bg-destructive {
+    background-color: var(--destructive);
+  }
   .bg-gray-200 {
     background-color: var(--color-gray-200);
   }
@@ -459,6 +492,9 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
   }
   .bg-red-600 {
     background-color: var(--color-red-600);
+  }
+  .bg-secondary {
+    background-color: var(--secondary);
   }
   .bg-white {
     background-color: var(--color-white);
@@ -487,11 +523,17 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
   .p-6 {
     padding: calc(var(--spacing) * 6);
   }
+  .px-3 {
+    padding-inline: calc(var(--spacing) * 3);
+  }
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
   }
   .px-6 {
     padding-inline: calc(var(--spacing) * 6);
+  }
+  .px-8 {
+    padding-inline: calc(var(--spacing) * 8);
   }
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
@@ -511,6 +553,10 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
     font-size: var(--text-sm);
     line-height: var(--tw-leading, var(--text-sm--line-height));
   }
+  .text-xs {
+    font-size: var(--text-xs);
+    line-height: var(--tw-leading, var(--text-xs--line-height));
+  }
   .leading-none {
     --tw-leading: 1;
     line-height: 1;
@@ -527,11 +573,29 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
   }
+  .whitespace-nowrap {
+    white-space: nowrap;
+  }
+  .text-amber-300 {
+    color: var(--color-amber-300);
+  }
   .text-foreground {
     color: var(--foreground);
   }
+  .text-muted {
+    color: var(--muted);
+  }
   .text-muted-foreground {
     color: var(--muted-foreground);
+  }
+  .text-primary {
+    color: var(--primary);
+  }
+  .text-primary-foreground {
+    color: var(--primary-foreground);
+  }
+  .text-secondary-foreground {
+    color: var(--secondary-foreground);
   }
   .text-white {
     color: var(--color-white);
@@ -542,14 +606,25 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
   .underline {
     text-decoration-line: underline;
   }
+  .underline-offset-4 {
+    text-underline-offset: 4px;
+  }
   .opacity-70 {
     opacity: 70%;
   }
   .opacity-100 {
     opacity: 100%;
   }
+  .shadow {
+    --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
   .shadow-lg {
     --tw-shadow: 0 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .shadow-sm {
+    --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   .ring-offset-background {
@@ -608,6 +683,43 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
       opacity: 70%;
     }
   }
+  .hover\:bg-accent {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--accent);
+      }
+    }
+  }
+  .hover\:bg-black\/90 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: color-mix(in srgb, #000 90%, transparent);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--color-black) 90%, transparent);
+        }
+      }
+    }
+  }
+  .hover\:bg-destructive\/90 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--destructive);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--destructive) 90%, transparent);
+        }
+      }
+    }
+  }
+  .hover\:bg-primary\/90 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--primary);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--primary) 90%, transparent);
+        }
+      }
+    }
+  }
   .hover\:bg-red-700 {
     &:hover {
       @media (hover: hover) {
@@ -615,19 +727,27 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
       }
     }
   }
-  .hover\:from-blue-700 {
+  .hover\:bg-secondary\/80 {
     &:hover {
       @media (hover: hover) {
-        --tw-gradient-from: var(--color-blue-700);
-        --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+        background-color: var(--secondary);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--secondary) 80%, transparent);
+        }
       }
     }
   }
-  .hover\:to-blue-800 {
+  .hover\:text-accent-foreground {
     &:hover {
       @media (hover: hover) {
-        --tw-gradient-to: var(--color-blue-800);
-        --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
+        color: var(--accent-foreground);
+      }
+    }
+  }
+  .hover\:underline {
+    &:hover {
+      @media (hover: hover) {
+        text-decoration-line: underline;
       }
     }
   }
@@ -689,12 +809,21 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
       outline-style: none;
     }
   }
-  .active\:scale-90 {
-    &:active {
-      --tw-scale-x: 90%;
-      --tw-scale-y: 90%;
-      --tw-scale-z: 90%;
-      scale: var(--tw-scale-x) var(--tw-scale-y);
+  .focus-visible\:ring-1 {
+    &:focus-visible {
+      --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
+      box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+    }
+  }
+  .focus-visible\:ring-ring {
+    &:focus-visible {
+      --tw-ring-color: var(--ring);
+    }
+  }
+  .focus-visible\:outline-none {
+    &:focus-visible {
+      --tw-outline-style: none;
+      outline-style: none;
     }
   }
   .active\:scale-95 {
@@ -708,6 +837,11 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
   .disabled\:pointer-events-none {
     &:disabled {
       pointer-events: none;
+    }
+  }
+  .disabled\:opacity-50 {
+    &:disabled {
+      opacity: 50%;
     }
   }
   .data-\[state\=closed\]\:animate-out {
@@ -777,6 +911,12 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
   .\[\&_svg\]\:pointer-events-none {
     & svg {
       pointer-events: none;
+    }
+  }
+  .\[\&_svg\]\:size-4 {
+    & svg {
+      width: calc(var(--spacing) * 4);
+      height: calc(var(--spacing) * 4);
     }
   }
   .\[\&_svg\]\:shrink-0 {

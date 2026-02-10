@@ -6,11 +6,22 @@ import { ModalVideo } from "./ModalVideo";
 const waitForOpenButton = async (container: HTMLElement) => {
   await waitFor(() => {
     const button = container.querySelector<HTMLButtonElement>(
-      "#focototal-open-button"
+      "#focototal-open-button",
     );
     expect(button).toBeInTheDocument();
   });
   return container.querySelector<HTMLButtonElement>("#focototal-open-button")!;
+};
+
+// Helper para esperar e obter o botão de fechar (X) do DOM
+const waitForCloseButton = async () => {
+  await waitFor(() => {
+    const button = document.querySelector<HTMLButtonElement>(
+      "#focototal-close-button",
+    );
+    expect(button).toBeInTheDocument();
+  });
+  return document.querySelector<HTMLButtonElement>("#focototal-close-button")!;
 };
 describe("ModalVideo", () => {
   let mockVideoContainer: HTMLElement;
@@ -61,11 +72,11 @@ describe("ModalVideo", () => {
         <ModalVideo
           videoContainer={mockVideoContainer}
           videoSrc={mockVideoSrc}
-        />
+        />,
       );
 
       const modalBackdrop = document.querySelector(
-        ".fixed.inset-0.bg-black\\/90"
+        ".fixed.inset-0.bg-black\\/90",
       );
       expect(modalBackdrop).not.toBeInTheDocument();
     });
@@ -75,12 +86,12 @@ describe("ModalVideo", () => {
         <ModalVideo
           videoContainer={mockVideoContainer}
           videoSrc={mockVideoSrc}
-        />
+        />,
       );
 
       await waitFor(() => {
         const button = mockVideoContainer.querySelector(
-          "#focototal-open-button"
+          "#focototal-open-button",
         );
         expect(button).toBeInTheDocument();
         // textContent pode estar vazio em alguns ambientes de teste, mas o botão existe
@@ -94,7 +105,7 @@ describe("ModalVideo", () => {
         <ModalVideo
           videoContainer={mockVideoContainer}
           videoSrc={mockVideoSrc}
-        />
+        />,
       );
 
       await waitFor(() => {
@@ -107,12 +118,12 @@ describe("ModalVideo", () => {
         <ModalVideo
           videoContainer={mockVideoContainer}
           videoSrc={mockVideoSrc}
-        />
+        />,
       );
 
       await waitFor(() => {
         const buttons = mockVideoContainer.querySelectorAll(
-          "#focototal-open-button"
+          "#focototal-open-button",
         );
         expect(buttons.length).toBe(1);
       });
@@ -126,18 +137,18 @@ describe("ModalVideo", () => {
         <ModalVideo
           videoContainer={mockVideoContainer}
           videoSrc={mockVideoSrc}
-        />
+        />,
       );
 
       await waitFor(() => {
         const button = mockVideoContainer.querySelector<HTMLButtonElement>(
-          "#focototal-open-button"
+          "#focototal-open-button",
         );
         expect(button).toBeInTheDocument();
       });
 
       const button = mockVideoContainer.querySelector<HTMLButtonElement>(
-        "#focototal-open-button"
+        "#focototal-open-button",
       );
       await user.click(button!);
 
@@ -153,18 +164,18 @@ describe("ModalVideo", () => {
         <ModalVideo
           videoContainer={mockVideoContainer}
           videoSrc={mockVideoSrc}
-        />
+        />,
       );
 
       await waitFor(() => {
         const button = mockVideoContainer.querySelector<HTMLButtonElement>(
-          "#focototal-open-button"
+          "#focototal-open-button",
         );
         expect(button).toBeInTheDocument();
       });
 
       const button = mockVideoContainer.querySelector<HTMLButtonElement>(
-        "#focototal-open-button"
+        "#focototal-open-button",
       );
       await user.click(button!);
 
@@ -179,7 +190,7 @@ describe("ModalVideo", () => {
         <ModalVideo
           videoContainer={mockVideoContainer}
           videoSrc={mockVideoSrc}
-        />
+        />,
       );
 
       const button = await waitForOpenButton(mockVideoContainer);
@@ -187,7 +198,7 @@ describe("ModalVideo", () => {
 
       await waitFor(() => {
         const placeholder = document.getElementById(
-          "focototal-video-placeholder"
+          "focototal-video-placeholder",
         );
         expect(placeholder).toBeInTheDocument();
         // getBoundingClientRect foi mockado para retornar 640x360
@@ -202,7 +213,7 @@ describe("ModalVideo", () => {
         <ModalVideo
           videoContainer={mockVideoContainer}
           videoSrc={mockVideoSrc}
-        />
+        />,
       );
 
       const button = await waitForOpenButton(mockVideoContainer);
@@ -210,7 +221,7 @@ describe("ModalVideo", () => {
 
       await waitFor(() => {
         const placeholder = document.getElementById(
-          "focototal-video-placeholder"
+          "focototal-video-placeholder",
         );
         expect(placeholder?.parentElement).toBe(mockParentElement);
         expect(mockVideoContainer.parentElement).not.toBe(mockParentElement);
@@ -223,7 +234,7 @@ describe("ModalVideo", () => {
         <ModalVideo
           videoContainer={mockVideoContainer}
           videoSrc={mockVideoSrc}
-        />
+        />,
       );
 
       const button = await waitForOpenButton(mockVideoContainer);
@@ -231,7 +242,7 @@ describe("ModalVideo", () => {
 
       await waitFor(() => {
         const modalContent = document.querySelector(
-          ".w-full.h-full.relative.overflow-hidden"
+          ".w-full.h-full.relative.overflow-hidden",
         );
         expect(modalContent).toContainElement(mockVideoContainer);
       });
@@ -243,7 +254,7 @@ describe("ModalVideo", () => {
         <ModalVideo
           videoContainer={mockVideoContainer}
           videoSrc={mockVideoSrc}
-        />
+        />,
       );
 
       const button = await waitForOpenButton(mockVideoContainer);
@@ -253,18 +264,18 @@ describe("ModalVideo", () => {
         // Verifica que os estilos foram aplicados (valores)
         expect(mockVideoContainer.style.getPropertyValue("width")).toBe("100%");
         expect(mockVideoContainer.style.getPropertyValue("height")).toBe(
-          "100%"
+          "100%",
         );
         expect(mockVideoContainer.style.getPropertyValue("min-height")).toBe(
-          "100%"
+          "100%",
         );
 
         // Verifica que !important foi usado (pelo menos em width e height)
         expect(mockVideoContainer.style.getPropertyPriority("width")).toBe(
-          "important"
+          "important",
         );
         expect(mockVideoContainer.style.getPropertyPriority("height")).toBe(
-          "important"
+          "important",
         );
       });
     });
@@ -275,7 +286,7 @@ describe("ModalVideo", () => {
         <ModalVideo
           videoContainer={mockVideoContainer}
           videoSrc={mockVideoSrc}
-        />
+        />,
       );
 
       const button = await waitForOpenButton(mockVideoContainer);
@@ -296,18 +307,15 @@ describe("ModalVideo", () => {
         <ModalVideo
           videoContainer={mockVideoContainer}
           videoSrc={mockVideoSrc}
-        />
+        />,
       );
 
       const button = await waitForOpenButton(mockVideoContainer);
       await user.click(button);
 
-      await waitFor(() => {
-        const closeButton = document.querySelector(
-          'button[class*="absolute top-"]'
-        );
-        expect(closeButton).toBeInTheDocument();
-      });
+      // Espera o botão de fechar aparecer
+      const closeButton = await waitForCloseButton();
+      expect(closeButton).toBeInTheDocument();
     });
   });
 
@@ -318,7 +326,7 @@ describe("ModalVideo", () => {
         <ModalVideo
           videoContainer={mockVideoContainer}
           videoSrc={mockVideoSrc}
-        />
+        />,
       );
 
       const button = await waitForOpenButton(mockVideoContainer);
@@ -327,13 +335,14 @@ describe("ModalVideo", () => {
       await waitFor(() => {
         expect(document.querySelector(".fixed.inset-0")).toBeInTheDocument();
       });
+
+      // Espera o botão de fechar aparecer
+      await waitForCloseButton();
     });
 
     it("deve fechar modal ao clicar no botão X", async () => {
       const user = userEvent.setup();
-      const closeButton = document.querySelector(
-        'button[class*="absolute top-"]'
-      ) as HTMLElement;
+      const closeButton = await waitForCloseButton();
 
       await user.click(closeButton);
 
@@ -345,11 +354,9 @@ describe("ModalVideo", () => {
 
     it('deve mostrar botão "Tela Cheia" novamente ao fechar modal', async () => {
       const user = userEvent.setup();
-      const closeButton = document.querySelector(
-        'button[class*="absolute top-"]'
-      ) as HTMLElement;
+      const closeButton = await waitForCloseButton();
       const openButton = mockVideoContainer.querySelector(
-        "#focototal-open-button"
+        "#focototal-open-button",
       ) as HTMLElement;
 
       await user.click(closeButton);
@@ -361,15 +368,13 @@ describe("ModalVideo", () => {
 
     it("deve remover placeholder do DOM ao fechar modal", async () => {
       const user = userEvent.setup();
-      const closeButton = document.querySelector(
-        'button[class*="absolute top-"]'
-      ) as HTMLElement;
+      const closeButton = await waitForCloseButton();
 
       await user.click(closeButton);
 
       await waitFor(() => {
         const placeholder = document.getElementById(
-          "focototal-video-placeholder"
+          "focototal-video-placeholder",
         );
         expect(placeholder).not.toBeInTheDocument();
       });
@@ -377,9 +382,7 @@ describe("ModalVideo", () => {
 
     it("deve devolver videoContainer para posição original no DOM", async () => {
       const user = userEvent.setup();
-      const closeButton = document.querySelector(
-        'button[class*="absolute top-"]'
-      ) as HTMLElement;
+      const closeButton = await waitForCloseButton();
 
       await user.click(closeButton);
 
@@ -390,9 +393,7 @@ describe("ModalVideo", () => {
 
     it("deve remover TODOS os estilos inline do videoContainer usando removeProperty", async () => {
       const user = userEvent.setup();
-      const closeButton = document.querySelector(
-        'button[class*="absolute top-"]'
-      ) as HTMLElement;
+      const closeButton = await waitForCloseButton();
 
       await user.click(closeButton);
 
@@ -402,30 +403,28 @@ describe("ModalVideo", () => {
         expect(mockVideoContainer.style.getPropertyValue("height")).toBe("");
         expect(mockVideoContainer.style.getPropertyValue("max-width")).toBe("");
         expect(mockVideoContainer.style.getPropertyValue("max-height")).toBe(
-          ""
+          "",
         );
         expect(mockVideoContainer.style.getPropertyValue("min-height")).toBe(
-          ""
+          "",
         );
         expect(mockVideoContainer.style.getPropertyValue("padding")).toBe("");
         expect(mockVideoContainer.style.getPropertyValue("margin")).toBe("");
         expect(mockVideoContainer.style.getPropertyValue("aspect-ratio")).toBe(
-          ""
+          "",
         );
       });
     });
 
     it("deve remover TODOS os estilos inline do iframe usando removeProperty", async () => {
       const user = userEvent.setup();
-      const closeButton = document.querySelector(
-        'button[class*="absolute top-"]'
-      ) as HTMLElement;
+      const closeButton = await waitForCloseButton();
 
       await user.click(closeButton);
 
       await waitFor(() => {
         const iframe = mockVideoContainer.querySelector(
-          "iframe"
+          "iframe",
         ) as HTMLIFrameElement;
         expect(iframe.style.getPropertyValue("position")).toBe("");
         expect(iframe.style.getPropertyValue("top")).toBe("");
@@ -438,9 +437,7 @@ describe("ModalVideo", () => {
 
     it("deve restaurar vídeo ao estado original sem estilos residuais", async () => {
       const user = userEvent.setup();
-      const closeButton = document.querySelector(
-        'button[class*="absolute top-"]'
-      ) as HTMLElement;
+      const closeButton = await waitForCloseButton();
 
       await user.click(closeButton);
 
@@ -449,7 +446,7 @@ describe("ModalVideo", () => {
         expect(mockVideoContainer.style.getPropertyValue("width")).toBe("");
         expect(mockVideoContainer.style.getPropertyValue("height")).toBe("");
         expect(mockVideoContainer.style.getPropertyValue("min-height")).toBe(
-          ""
+          "",
         );
         expect(mockVideoContainer.style.getPropertyValue("padding")).toBe("");
         expect(mockVideoContainer.style.getPropertyValue("margin")).toBe("");
@@ -469,22 +466,22 @@ describe("ModalVideo", () => {
         <ModalVideo
           videoContainer={mockVideoContainer}
           videoSrc={mockVideoSrc}
-        />
+        />,
       );
 
       // Primeiro ciclo: abrir e fechar
       const openButton1 = await waitForOpenButton(mockVideoContainer);
       await user.click(openButton1);
       await waitFor(() =>
-        expect(document.querySelector(".fixed.inset-0")).toBeInTheDocument()
+        expect(document.querySelector(".fixed.inset-0")).toBeInTheDocument(),
       );
 
-      const closeButton1 = document.querySelector(
-        'button[class*="absolute top-"]'
-      ) as HTMLElement;
+      const closeButton1 = await waitForCloseButton();
       await user.click(closeButton1);
       await waitFor(() =>
-        expect(document.querySelector(".fixed.inset-0")).not.toBeInTheDocument()
+        expect(
+          document.querySelector(".fixed.inset-0"),
+        ).not.toBeInTheDocument(),
       );
 
       // Segundo ciclo: reabrir
@@ -494,7 +491,7 @@ describe("ModalVideo", () => {
       await waitFor(() => {
         expect(document.querySelector(".fixed.inset-0")).toBeInTheDocument();
         const placeholder = document.getElementById(
-          "focototal-video-placeholder"
+          "focototal-video-placeholder",
         );
         expect(placeholder).toBeInTheDocument();
       });
@@ -506,7 +503,7 @@ describe("ModalVideo", () => {
         <ModalVideo
           videoContainer={mockVideoContainer}
           videoSrc={mockVideoSrc}
-        />
+        />,
       );
 
       // Abrir e fechar
@@ -514,18 +511,16 @@ describe("ModalVideo", () => {
       await user.click(openButton1);
       await waitFor(() =>
         expect(
-          document.getElementById("focototal-video-placeholder")
-        ).toBeInTheDocument()
+          document.getElementById("focototal-video-placeholder"),
+        ).toBeInTheDocument(),
       );
 
-      const closeButton1 = document.querySelector(
-        'button[class*="absolute top-"]'
-      ) as HTMLElement;
+      const closeButton1 = await waitForCloseButton();
       await user.click(closeButton1);
       await waitFor(() =>
         expect(
-          document.getElementById("focototal-video-placeholder")
-        ).not.toBeInTheDocument()
+          document.getElementById("focototal-video-placeholder"),
+        ).not.toBeInTheDocument(),
       );
 
       // Reabrir
@@ -534,7 +529,7 @@ describe("ModalVideo", () => {
 
       await waitFor(() => {
         const placeholders = document.querySelectorAll(
-          "#focototal-video-placeholder"
+          "#focototal-video-placeholder",
         );
         expect(placeholders.length).toBe(1); // Apenas 1 placeholder deve existir
       });
@@ -547,19 +542,19 @@ describe("ModalVideo", () => {
         <ModalVideo
           videoContainer={mockVideoContainer}
           videoSrc={mockVideoSrc}
-        />
+        />,
       );
 
       await waitFor(() => {
         expect(
-          mockVideoContainer.querySelector("#focototal-open-button")
+          mockVideoContainer.querySelector("#focototal-open-button"),
         ).toBeInTheDocument();
       });
 
       unmount();
 
       expect(
-        mockVideoContainer.querySelector("#focototal-open-button")
+        mockVideoContainer.querySelector("#focototal-open-button"),
       ).not.toBeInTheDocument();
     });
   });
@@ -574,7 +569,7 @@ describe("ModalVideo", () => {
           <ModalVideo
             videoContainer={containerSemIframe}
             videoSrc={mockVideoSrc}
-          />
+          />,
         );
       }).not.toThrow();
     });
@@ -584,7 +579,10 @@ describe("ModalVideo", () => {
 
       expect(() => {
         render(
-          <ModalVideo videoContainer={containerOrfao} videoSrc={mockVideoSrc} />
+          <ModalVideo
+            videoContainer={containerOrfao}
+            videoSrc={mockVideoSrc}
+          />,
         );
       }).not.toThrow();
     });
@@ -594,12 +592,12 @@ describe("ModalVideo", () => {
         <ModalVideo
           videoContainer={mockVideoContainer}
           videoSrc={mockVideoSrc}
-        />
+        />,
       );
 
       await waitFor(() => {
         expect(
-          mockVideoContainer.querySelector("#focototal-open-button")
+          mockVideoContainer.querySelector("#focototal-open-button"),
         ).toBeInTheDocument();
       });
 
@@ -608,12 +606,12 @@ describe("ModalVideo", () => {
         <ModalVideo
           videoContainer={mockVideoContainer}
           videoSrc={newVideoSrc}
-        />
+        />,
       );
 
       await waitFor(() => {
         const button = mockVideoContainer.querySelector(
-          "#focototal-open-button"
+          "#focototal-open-button",
         );
         expect(button).toBeInTheDocument();
       });

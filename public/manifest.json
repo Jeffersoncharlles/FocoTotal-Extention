@@ -1,7 +1,7 @@
 {
   "name": "FocoTotal",
   "description": "Adiciona um modo de cinema a players de vídeo em diversas plataformas.",
-  "version": "2.4.5",
+  "version": "2.4.6",
   "manifest_version": 3,
   "icons": {
     "16": "icons/focototal_16x16.png",
