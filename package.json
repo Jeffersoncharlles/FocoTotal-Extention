@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "generate:tailwind-css": "node scripts/generate-tailwind-css.js",
+    "build": "npm run generate:tailwind-css && tsc -b && vite build && vite build --config vite.config.popup.ts",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
+    "@tailwindcss/postcss": "^4.1.18",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
     "@testing-library/user-event": "^14.6.1",
@@ -39,6 +41,7 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.2.0",
     "jsdom": "^27.3.0",
+    "postcss": "^8.5.6",
     "tw-animate-css": "^1.3.4",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.34.1",
