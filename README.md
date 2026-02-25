@@ -2,8 +2,10 @@
 
 `FocoTotal-Extention` é uma extensão para o Google Chrome que melhora a sua experiência ao assistir vídeos, adicionando um "modo cinema" que escurece o restante da página e um modo de tela cheia customizado para focar totalmente no conteúdo do vídeo.
 
+## Demonstração
+
 <p align="center">
-  <img src="https://github.com/Jeffersoncharlles/FocoTotal-Extention/public/icons/focototal.png?raw=true" alt="Demonstração do FocoTotal" width="700"/>
+  <img src="./screen/screen.gif" alt="Demonstração do FocoTotal em uso" width="700"/>
 </p>
 
 ## Como Instalar (Uso Geral)
