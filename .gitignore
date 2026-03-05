@@ -13,6 +13,9 @@ fullscreenjc.zip
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
+IFRAME_DETECTOR.md
+INTEGRATION_GUIDE.md
+
 # Runtime data
 pids
 *.pid

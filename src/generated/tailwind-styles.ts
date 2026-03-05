@@ -2,7 +2,7 @@
  * CSS compilado do Tailwind para injeção dinâmica no content script
  * Este arquivo é gerado automaticamente. NÃO edite manualmente.
  * Para regenerar, execute: npm run generate:tailwind-css
- * Gerado em: 2026-02-10T23:21:57.245Z
+ * Gerado em: 2026-02-13T13:10:13.835Z
  */
 
 export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tailwindcss.com */
@@ -196,6 +196,9 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
   }
 }
 @layer utilities {
+  .pointer-events-auto {
+    pointer-events: auto;
+  }
   .visible {
     visibility: visible;
   }
@@ -288,6 +291,9 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
   .grid {
     display: grid;
   }
+  .hidden {
+    display: none;
+  }
   .inline {
     display: inline;
   }
@@ -302,6 +308,9 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
   }
   .h-4 {
     height: calc(var(--spacing) * 4);
+  }
+  .h-5 {
+    height: calc(var(--spacing) * 5);
   }
   .h-6 {
     height: calc(var(--spacing) * 6);
@@ -321,11 +330,17 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
   .h-full {
     height: 100%;
   }
+  .max-h-screen {
+    max-height: 100vh;
+  }
   .min-h-0 {
     min-height: calc(var(--spacing) * 0);
   }
   .w-4 {
     width: calc(var(--spacing) * 4);
+  }
+  .w-5 {
+    width: calc(var(--spacing) * 5);
   }
   .w-6 {
     width: calc(var(--spacing) * 6);
@@ -347,6 +362,9 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
   }
   .max-w-\[calc\(100\%-2rem\)\] {
     max-width: calc(100% - 2rem);
+  }
+  .max-w-screen {
+    max-width: 100vw;
   }
   .flex-shrink {
     flex-shrink: 1;
@@ -483,6 +501,9 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
   }
   .bg-destructive {
     background-color: var(--destructive);
+  }
+  .bg-foreground {
+    background-color: var(--foreground);
   }
   .bg-gray-200 {
     background-color: var(--color-gray-200);
