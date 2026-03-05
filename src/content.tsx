@@ -38,10 +38,10 @@ function renderApp(videoContainer: HTMLElement, videoSrc: string) {
     reactRoot = ReactDOM.createRoot(rootDiv);
   }
 
-  // Atualiza o SRC atual em memória
+
   currentVideoSrc = videoSrc;
 
-  // Renderiza/Atualiza o componente React com as novas props
+
   reactRoot.render(
     <React.StrictMode>
       <ModalVideo videoContainer={videoContainer} videoSrc={videoSrc} />

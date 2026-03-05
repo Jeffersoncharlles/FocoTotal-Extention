@@ -2,10 +2,10 @@
  * CSS compilado do Tailwind para injeção dinâmica no content script
  * Este arquivo é gerado automaticamente. NÃO edite manualmente.
  * Para regenerar, execute: npm run generate:tailwind-css
- * Gerado em: 2026-02-13T13:10:13.835Z
+ * Gerado em: 2026-03-05T12:21:05.653Z
  */
 
-export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tailwindcss.com */
+export const TAILWIND_CSS = `/*! tailwindcss v4.2.1 | MIT License | https://tailwindcss.com */
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
@@ -178,9 +178,6 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
   }
   ::-webkit-datetime-edit, ::-webkit-datetime-edit-year-field, ::-webkit-datetime-edit-month-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-hour-field, ::-webkit-datetime-edit-minute-field, ::-webkit-datetime-edit-second-field, ::-webkit-datetime-edit-millisecond-field, ::-webkit-datetime-edit-meridiem-field {
     padding-block: 0;
-  }
-  ::-webkit-calendar-picker-indicator {
-    line-height: 1;
   }
   :-moz-ui-invalid {
     box-shadow: none;
@@ -976,11 +973,6 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
   inherits: false;
   initial-value: 1;
 }
-@property --tw-enter-blur {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0;
-}
 @property --tw-enter-opacity {
   syntax: "*";
   inherits: false;
@@ -1002,11 +994,6 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
   initial-value: 0;
 }
 @property --tw-enter-translate-y {
-  syntax: "*";
-  inherits: false;
-  initial-value: 0;
-}
-@property --tw-exit-blur {
   syntax: "*";
   inherits: false;
   initial-value: 0;
@@ -1366,14 +1353,12 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
   from {
     opacity: var(--tw-enter-opacity,1);
     transform: translate3d(var(--tw-enter-translate-x,0),var(--tw-enter-translate-y,0),0)scale3d(var(--tw-enter-scale,1),var(--tw-enter-scale,1),var(--tw-enter-scale,1))rotate(var(--tw-enter-rotate,0));
-    filter: blur(var(--tw-enter-blur,0));
   }
 }
 @keyframes exit {
   to {
     opacity: var(--tw-exit-opacity,1);
     transform: translate3d(var(--tw-exit-translate-x,0),var(--tw-exit-translate-y,0),0)scale3d(var(--tw-exit-scale,1),var(--tw-exit-scale,1),var(--tw-exit-scale,1))rotate(var(--tw-exit-rotate,0));
-    filter: blur(var(--tw-exit-blur,0));
   }
 }
 @layer properties {
@@ -1439,13 +1424,11 @@ export const TAILWIND_CSS = `/*! tailwindcss v4.1.18 | MIT License | https://tai
       --tw-animation-duration: initial;
       --tw-animation-fill-mode: none;
       --tw-animation-iteration-count: 1;
-      --tw-enter-blur: 0;
       --tw-enter-opacity: 1;
       --tw-enter-rotate: 0;
       --tw-enter-scale: 1;
       --tw-enter-translate-x: 0;
       --tw-enter-translate-y: 0;
-      --tw-exit-blur: 0;
       --tw-exit-opacity: 1;
       --tw-exit-rotate: 0;
       --tw-exit-scale: 1;
