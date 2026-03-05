@@ -2,7 +2,6 @@
 name: Build, Create Release and Publish
 
 # Gatilho (Trigger)
-# Roda quando um push é feito para 'main' e o 'manifest.json' foi alterado.
 on:
   push:
     branches:
@@ -13,51 +12,40 @@ on:
 # Tarefas (Jobs)
 jobs:
   build-and-release:
-    # Máquina virtual para rodar o job
     runs-on: ubuntu-latest
 
-    # Permissões para criar a release
     permissions:
       contents: write
 
-    # Passos a serem executados
     steps:
-      # 1. Faz o checkout do código do repositório
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Configura o ambiente Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "npm"
 
-      # 3. Instala as dependências do projeto
       - name: Install dependencies
         run: npm install
 
-      # 4. Roda o script de build do React (Vite gera a pasta 'dist')
       - name: Build the extension
         run: npm run build
 
-      # 5. Extrai a versão do manifest.json original para usar nos nomes
       - name: Extract version from manifest.json
         id: get_version
         run: echo "version=$(jq -r .version public/manifest.json)" >> $GITHUB_OUTPUT
 
-      # 6. Cria o nome do arquivo ZIP
       - name: Create ZIP file name
         id: zip_name
         run: echo "name=FocoTotal-Extention-v${{ steps.get_version.outputs.version }}.zip" >> $GITHUB_OUTPUT
 
-      # 7. Compacta os arquivos da pasta 'dist' (padrão do Vite)
       - name: Zip built extension files
         run: |
           cd dist
           zip -r ../${{ steps.zip_name.outputs.name }} .
 
-      # 8. Cria a Tag e a Release no GitHub
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
@@ -69,10 +57,9 @@ jobs:
           draft: false
           prerelease: false
 
-      # 9. PASSO CORRIGIDO: PUBLICAR NA CHROME WEB STORE
-      # Substituído mnao305/chrome-extension-upload@v5 para resolver o erro de repositório
+      # PASSO CORRIGIDO: Usando a versão estável da Action
       - name: Upload & Publish to Chrome Web Store
-        uses: mnao305/chrome-extension-upload@v5
+        uses: mnao305/chrome-extension-upload@v5.0.0
         with:
           file-path: ${{ steps.zip_name.outputs.name }}
           extension-id: ${{ secrets.CHROME_EXTENSION_ID }}
