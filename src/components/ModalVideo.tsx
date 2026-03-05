@@ -91,7 +91,8 @@ export const ModalVideo: FC<ModalVideoProps> = ({
           <div className="fixed inset-0 bg-black/90 flex flex-col items-center justify-center z-2147483640 p-4">
             <Button
               onClick={() => setIsModalOpen(false)}
-              className="fixed top-4 right-4 z-2147483647 w-12 h-12 rounded-full bg-red-600 text-white hover:bg-red-700 border-2 border-white shadow-lg"
+              className="fixed top-4 right-4 w-12 h-12 rounded-full bg-red-600 text-white hover:bg-red-700 border-2 border-white shadow-lg pointer-events-auto"
+              style={{ zIndex: 2147483647 }}
               size="icon"
               aria-label="Fechar modal de vídeo"
             >

@@ -77,3 +77,14 @@ jobs:
             - Arquivo de instalação (`.zip`) com os arquivos compilados.
           draft: false
           prerelease: false
+
+        # NOVO PASSO: PUBLICAR NA CHROME WEB STORE
+      - name: Upload & Publish to Chrome Web Store
+        uses: chrome-serverless/chrome-extension-upload@v1
+        with:
+          file-path: ${{ steps.zip_name.outputs.name }}
+          extension-id: ${{ secrets.CHROME_EXTENSION_ID }}
+          client-id: ${{ secrets.CHROME_CLIENT_ID }}
+          client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
+          refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
+          publish: true
