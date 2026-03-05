@@ -1,5 +1,5 @@
 # Nome do Workflow
-name: Build and Create Release
+name: Build, Create Release and Publish
 
 # Gatilho (Trigger)
 # Roda quando um push é feito para 'main' e o 'manifest.json' foi alterado.
@@ -27,27 +27,23 @@ jobs:
         uses: actions/checkout@v4
 
       # 2. Configura o ambiente Node.js
-      # Essencial para poder instalar dependências e rodar o build.
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          # Use a versão do Node.js compatível com seu projeto
           node-version: "20"
-          cache: "npm" # Habilita o cache para acelerar futuras instalações
+          cache: "npm"
 
       # 3. Instala as dependências do projeto
       - name: Install dependencies
         run: npm install
 
-      # 4. Roda o script de build do React
-      # Este comando irá criar a pasta 'build/' com os arquivos finais da extensão.
+      # 4. Roda o script de build do React (Vite gera a pasta 'dist')
       - name: Build the extension
         run: npm run build
 
-      # 5. Extrai a versao do manifest.json original para usar nos nomes
+      # 5. Extrai a versão do manifest.json original para usar nos nomes
       - name: Extract version from manifest.json
         id: get_version
-        # Lemos do manifest.json na pasta public/
         run: echo "version=$(jq -r .version public/manifest.json)" >> $GITHUB_OUTPUT
 
       # 6. Cria o nome do arquivo ZIP
@@ -55,15 +51,13 @@ jobs:
         id: zip_name
         run: echo "name=FocoTotal-Extention-v${{ steps.get_version.outputs.version }}.zip" >> $GITHUB_OUTPUT
 
-      # 7. Compacta os arquivos da extensão JÁ COMPILADOS
-      # O passo mais importante: entramos na pasta 'build' e compactamos o conteúdo dela.
-      # Se sua pasta de build se chamar 'dist', troque 'build' por 'dist' abaixo.
+      # 7. Compacta os arquivos da pasta 'dist' (padrão do Vite)
       - name: Zip built extension files
         run: |
           cd dist
           zip -r ../${{ steps.zip_name.outputs.name }} .
 
-      # 8. Cria a Tag e a Release no GitHub com o ZIP gerado
+      # 8. Cria a Tag e a Release no GitHub
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
@@ -72,15 +66,13 @@ jobs:
           name: Release v${{ steps.get_version.outputs.version }}
           body: |
             Lançamento oficial da versão ${{ steps.get_version.outputs.version }} da extensão FocoTotal.
-
-            **Assets:**
-            - Arquivo de instalação (`.zip`) com os arquivos compilados.
           draft: false
           prerelease: false
 
-        # NOVO PASSO: PUBLICAR NA CHROME WEB STORE
+      # 9. PASSO CORRIGIDO: PUBLICAR NA CHROME WEB STORE
+      # Substituído mnao305/chrome-extension-upload@v5 para resolver o erro de repositório
       - name: Upload & Publish to Chrome Web Store
-        uses: chrome-serverless/chrome-extension-upload@v1
+        uses: mnao305/chrome-extension-upload@v5
         with:
           file-path: ${{ steps.zip_name.outputs.name }}
           extension-id: ${{ secrets.CHROME_EXTENSION_ID }}
