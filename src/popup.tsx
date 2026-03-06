@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
+import type { ChromeMessage, StorageData } from "./types/chrome-messages";
 
 // eslint-disable-next-line react-refresh/only-export-components
 function PopupApp() {
@@ -11,7 +12,7 @@ function PopupApp() {
     // Carrega o estado salvo
     chrome.storage.sync.get(
       ["pluginEnabled"],
-      (result: { pluginEnabled?: boolean }) => {
+      (result: StorageData) => {
         setIsEnabled(result.pluginEnabled ?? false);
         setLoading(false);
       }
@@ -23,7 +24,7 @@ function PopupApp() {
     setIsEnabled(newState);
 
     // Salva o estado
-    await chrome.storage.sync.set({ pluginEnabled: newState });
+    await chrome.storage.sync.set({ pluginEnabled: newState } satisfies StorageData);
 
     // Notifica os content scripts ativos sobre a mudança
     const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -31,7 +32,7 @@ function PopupApp() {
       chrome.tabs.sendMessage(tabs[0].id, {
         action: "togglePlugin",
         enabled: newState,
-      });
+      } satisfies ChromeMessage);
     }
   };
 

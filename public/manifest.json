@@ -19,10 +19,32 @@
     }
   },
   "permissions": ["storage"],
-  "host_permissions": ["https://*/*"],
+  "host_permissions": [
+    "https://*.youtube.com/*",
+    "https://*.youtube-nocookie.com/*",
+    "https://*.vimeo.com/*",
+    "https://*.hotmart.com/*",
+    "https://*.rocketseat.com.br/*",
+    "https://*.estacio.br/*",
+    "https://*.unianhanguera.edu.br/*",
+    "https://*.anhanguera.com/*",
+    "https://*.wistia.net/*",
+    "https://*.vidyard.com/*"
+  ],
   "content_scripts": [
     {
-      "matches": ["https://*/*"],
+      "matches": [
+        "https://*.youtube.com/*",
+        "https://*.youtube-nocookie.com/*",
+        "https://*.vimeo.com/*",
+        "https://*.hotmart.com/*",
+        "https://*.rocketseat.com.br/*",
+        "https://*.estacio.br/*",
+        "https://*.unianhanguera.edu.br/*",
+        "https://*.anhanguera.com/*",
+        "https://*.wistia.net/*",
+        "https://*.vidyard.com/*"
+      ],
       "js": ["content.js"]
     }
   ]
