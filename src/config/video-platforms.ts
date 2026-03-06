@@ -58,6 +58,7 @@ export const VIDEO_PLATFORM_PATTERNS: VideoPlatformPattern[] = [
       /anhanguera\.com/i,
       /ava\.anhanguera\.com/i,
       /aluno\.anhanguera\.com/i,
+      /kroton\.platosedu\.io/i,
     ],
   },
   {

@@ -2,7 +2,7 @@
  * CSS compilado do Tailwind para injeção dinâmica no content script
  * Este arquivo é gerado automaticamente. NÃO edite manualmente.
  * Para regenerar, execute: npm run generate:tailwind-css
- * Gerado em: 2026-03-05T22:32:08.027Z
+ * Gerado em: 2026-03-06T10:09:30.356Z
  */
 
 export const TAILWIND_CSS = `/*! tailwindcss v4.2.1 | MIT License | https://tailwindcss.com */

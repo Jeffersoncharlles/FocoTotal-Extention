@@ -13,13 +13,6 @@ import { usePageObserver } from "./hooks/usePageObserver";
 // Para voltar ao sistema antigo, mude para false
 const USE_IFRAME_DETECTOR = true;
 
-// // Log inicial para confirmar que o content script foi carregado
-// contentLogger.log("Content script carregado com sucesso!");
-// contentLogger.log(`Versão: 2.4.3`);
-// contentLogger.log(`URL: ${window.location.href}`);
-// contentLogger.log(
-//   `Modo de detecção: ${USE_IFRAME_DETECTOR ? "IFRAME DETECTOR (Novo)" : "SELETORES (Legado)"}`,
-// );
 
 // Inicializa os hooks
 const videoDetector = useVideoDetection({ useIframeDetector: USE_IFRAME_DETECTOR });
